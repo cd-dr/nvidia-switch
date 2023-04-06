@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-MODULES_LOAD=(nvidia nvidia_uvm nvidia_modeset nvidia_drm)
-MODULES_UNLOAD=(nvidia_drm nvidia_modeset nvidia_uvm nvidia)
+MODULES_LOAD=(nvidia nvidia_modeset nvidia_drm nvidia_uvm)
+MODULES_UNLOAD=(i2c_nvidia_gpu nvidia_uvm nvidia_drm nvidia_modeset nvidia)
 
 function load_modules {
   for module in "${MODULES_LOAD[@]}"
   do
-    #Loading modules
+    # Loading modules
     sudo modprobe "${module}"
   done
 }
@@ -14,8 +14,12 @@ function load_modules {
 function unload_modules {
   for module in "${MODULES_UNLOAD[@]}"
   do
-    #Unloading modules
+    # This line makes removing nvidia module possible
+    sudo systemctl stop systemd-logind
+    # Unloading modules
     sudo modprobe -r "${module}"
+    # sudo rmmod "${module}"
+    # sudo systemctl start systemd-logind
   done
 }
 

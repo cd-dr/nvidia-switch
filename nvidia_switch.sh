@@ -79,4 +79,4 @@ fi
 # lightdm, or sddm, with gnome or any other desktop environment. Just a metter of installing
 # the packages.
 
-sudo systemctl restart display-manager.service
+# sudo systemctl restart display-manager.service

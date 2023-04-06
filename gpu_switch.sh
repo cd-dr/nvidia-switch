@@ -7,7 +7,8 @@
 # better, lspci -tvv tree.
 
 # Load bus Id's
-. /etc/nvidia-switch/bus_id
+# . /etc/nvidia-switch/bus_id
+. /opt/nvidia-switch/bus_id
 
 function turn_off_gpu {
   # The ideia of the script is to remove the Nvidia from the Kernel only if the
